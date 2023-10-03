@@ -1,0 +1,22 @@
+name: Deployment
+on: push
+jobs:
+  lint:
+    runs-on: unbuntu-latest
+    steps:
+      - name: lint
+        run: npm lint
+  test:
+    needs: lint
+    runs-on: unbuntu-latest
+    steps:
+      - name: test
+        run: npm test
+  build:
+    needs: test
+    runs-on: unbuntu-latest
+    steps:
+      - name: build
+        run: npm run build
+      - name: deploy
+        run: echo "successfully run !"
